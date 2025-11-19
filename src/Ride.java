@@ -1,4 +1,4 @@
-public class Ride {
+public class Ride implements RideInterface {
 
         private String rideName;
         private String rideType;
@@ -36,4 +36,44 @@ public class Ride {
         public void setOperator(Employee operator) {
             this.operator = operator;
         }
+
+    @Override
+    public void addVisitorToQueue(Visitor visitor) {
+
+    }
+
+    @Override
+    public void removeVisitorFromQueue() {
+
+    }
+
+    @Override
+    public void printQueue() {
+
+    }
+
+    @Override
+    public int numberOfVisitors() {
+        return 0;
+    }
+
+    @Override
+    public void printRideHistory() {
+
+    }
+
+    @Override
+    public void runOneCycle() {
+
+    }
+
+    @Override
+    public boolean checkVisitorFromHistory(Visitor visitor) {
+        return false;
+    }
+
+    @Override
+    public void addVisitorToHistory(Visitor visitor) {
+
+    }
 }
