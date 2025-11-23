@@ -1,29 +1,51 @@
 public class AssignmentTwo {
-        public static void main(String[] args) {
-                    partThree();
-                }
+    public static void main(String[] args) {
+        AssignmentTwo test = new AssignmentTwo();
+        test.partThree();
+        test.partFourA();
+    }
 
-                public static void partThree() {
-                    System.out.println("=== Part3 Test waiting queue ===");
-                    Employee emp = new Employee("张三", 30, "13800138000", "EMP001", "Roller coaster");
-                    Ride rollerCoaster = new Ride("Roller coaster", "Stimulating type", emp);
-                    Visitor v1 = new Visitor("Li Si", 20, "13900139000", "VIS001", true);
-                    Visitor v2 = new Visitor("Wang Wu", 25, "13700137000", "VIS002", false);
-                    Visitor v3 = new Visitor("Zhao Liu", 18, "13600136000", "VIS003", true);
-                    Visitor v4 = new Visitor("Sun Qi", 30, "13500135000", "VIS004", false);
-                    Visitor v5 = new Visitor("Zhou Ba", 22, "13400134000", "VIS005", true);
+    public void partThree() {
+        System.out.println("=== Part3 Test waiting queue ===");
+        Employee emp = new Employee("Zhang San", 30, "13800138000", "EMP001", "Roller coaster");
+        Ride rollerCoaster = new Ride("Roller coaster", "Stimulating type", emp);
+        Visitor v1 = new Visitor("Li Si", 20, "13900139000", "VIS001", true);
+        Visitor v2 = new Visitor("Wang Wu", 25, "13700137000", "VIS002", false);
+        Visitor v3 = new Visitor("Zhao Liu", 18, "13600136000", "VIS003", true);
+        Visitor v4 = new Visitor("Sun Qi", 30, "13500135000", "VIS004", false);
+        Visitor v5 = new Visitor("Zhou Ba", 22, "13400134000", "VIS005", true);
 
-                    rollerCoaster.addVisitorToQueue(v1);
-                    rollerCoaster.addVisitorToQueue(v2);
-                    rollerCoaster.addVisitorToQueue(v3);
-                    rollerCoaster.addVisitorToQueue(v4);
-                    rollerCoaster.addVisitorToQueue(v5);
-                    rollerCoaster.printQueue();
-                    rollerCoaster.removeVisitorFromQueue();
-                    System.out.println("\nAfter removing a visitor:");
-                     rollerCoaster.printQueue();
-            }
-        public void partFourA() {}
+        rollerCoaster.addVisitorToQueue(v1);
+        rollerCoaster.addVisitorToQueue(v2);
+        rollerCoaster.addVisitorToQueue(v3);
+        rollerCoaster.addVisitorToQueue(v4);
+        rollerCoaster.addVisitorToQueue(v5);
+        rollerCoaster.printQueue();
+        rollerCoaster.removeVisitorFromQueue();
+        System.out.println("\nAfter removing a visitor:");
+        rollerCoaster.printQueue();
+    }
+
+    public void partFourA() {
+                    System.out.println("=== Part4A Test the ride record function ===");
+    Employee emp = new Employee("Zhang San", 30, "13800138000", "EMP001", "Carousel");
+    Ride merryGoRound = new Ride("Carousel", "Parent-child category", emp);
+
+    Visitor v1 = new Visitor("Xiao Ming", 8, "13900139000", "VIS006", false);
+    Visitor v2 = new Visitor("Xiao Hong", 7, "13700137000", "VIS007", false);
+    Visitor v3 = new Visitor("Xiao Gang", 9, "13600136000", "VIS008", true);
+    Visitor v4 = new Visitor("Xiao Ya", 6, "13500135000", "VIS009", false);
+    Visitor v5 = new Visitor("Xiao Qiang", 10, "13400134000", "VIS010", true);
+
+                    merryGoRound.addVisitorToHistory(v1);
+                    merryGoRound.addVisitorToHistory(v2);
+                    merryGoRound.addVisitorToHistory(v3);
+                    merryGoRound.addVisitorToHistory(v4);
+                    merryGoRound.addVisitorToHistory(v5);
+                    merryGoRound.printRideHistory();
+                    merryGoRound.checkVisitorFromHistory(v2);
+                    merryGoRound.numberOfVisitors();
+}
 
         public void partFourB() {}
 
@@ -33,3 +55,4 @@ public class AssignmentTwo {
 
         public void partFive() {}
 }
+
