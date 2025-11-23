@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.Queue;
 
 public class Ride implements RideInterface {
@@ -7,7 +8,7 @@ public class Ride implements RideInterface {
         private String rideType;
         private Employee operator;
         private Queue<Visitor> waitingQueue = new LinkedList<>();
-
+        private LinkedList<Visitor> rideHistory = new LinkedList<>();
         public Ride() {
         }
 
@@ -49,6 +50,13 @@ public class Ride implements RideInterface {
             } else {
                 System.out.println("Error: Invalid tourist object, cannot be added to the queue!");
             }
+
+            if (visitor != null) {
+                rideHistory.add(visitor);
+                System.out.println("The visitor [" + visitor.getName() + "] has been successfully added to the ride history of[" + rideName + "]!");
+            } else {
+                System.out.println("Invalid tourist object! Unable to add to the history record!");
+            }
     }
 
     @Override
@@ -77,12 +85,25 @@ public class Ride implements RideInterface {
 
     @Override
     public int numberOfVisitors() {
-        return 0;
+            int count = rideHistory.size(); // LinkedList的size()方法：获取元素个数
+            System.out.println("[" + rideName + "]'s ride history record has " + count + "people！");
+            return count;
     }
 
     @Override
     public void printRideHistory() {
-
+            if (rideHistory.isEmpty()) {
+                System.out.println("[" + rideName + "]'s ride history is empty!");
+                return;
+            }
+            System.out.println("[" + rideName + "]'s ride history record（A total of " + rideHistory.size() + "people）：");
+            Iterator<Visitor> iterator = rideHistory.iterator();
+            int index = 1;
+            while (iterator.hasNext()) {
+                Visitor v = iterator.next();
+                System.out.println(index + ". " + v);
+                index++;
+            }
     }
 
     @Override
@@ -92,7 +113,18 @@ public class Ride implements RideInterface {
 
     @Override
     public boolean checkVisitorFromHistory(Visitor visitor) {
-        return false;
+            if (visitor == null) {
+                System.out.println("Error: the visitor object is invalid!");
+                return false;
+            }
+            for (Visitor v : rideHistory) {
+                if (v.getVisitorCardId().equals(visitor.getVisitorCardId())) {
+                    System.out.println("Visitor[" + visitor.getName() + "]（CardID：" + visitor.getVisitorCardId() + "） is in [" + rideName + "]'s history record！");
+                    return true;
+                }
+            }
+            System.out.println("Visitor[" + visitor.getName() + "]（CardID：" + visitor.getVisitorCardId() + "） is not in [" + rideName + "]'s history record!");
+            return false;
     }
 
     @Override
@@ -100,3 +132,4 @@ public class Ride implements RideInterface {
 
     }
 }
+
