@@ -3,6 +3,7 @@ public class AssignmentTwo {
         AssignmentTwo test = new AssignmentTwo();
         test.partThree();
         test.partFourA();
+        test.partFourB();
     }
 
     public void partThree() {
@@ -37,22 +38,44 @@ public class AssignmentTwo {
     Visitor v4 = new Visitor("Xiao Ya", 6, "13500135000", "VIS009", false);
     Visitor v5 = new Visitor("Xiao Qiang", 10, "13400134000", "VIS010", true);
 
-                    merryGoRound.addVisitorToHistory(v1);
-                    merryGoRound.addVisitorToHistory(v2);
-                    merryGoRound.addVisitorToHistory(v3);
-                    merryGoRound.addVisitorToHistory(v4);
-                    merryGoRound.addVisitorToHistory(v5);
-                    merryGoRound.printRideHistory();
-                    merryGoRound.checkVisitorFromHistory(v2);
-                    merryGoRound.numberOfVisitors();
-}
+          merryGoRound.addVisitorToHistory(v1);
+          merryGoRound.addVisitorToHistory(v2);
+          merryGoRound.addVisitorToHistory(v3);
+          merryGoRound.addVisitorToHistory(v4);
+          merryGoRound.addVisitorToHistory(v5);
+          merryGoRound.printRideHistory();
+          merryGoRound.checkVisitorFromHistory(v2);
+          merryGoRound.numberOfVisitors();
+    }
 
-        public void partFourB() {}
+        public void partFourB() {
+                System.out.println("\n=== Part4B Sort test history records ===");
+                Employee emp = new Employee("Zhang San", 30, "13800138000", "EMP001", "Bumper car");
+                Ride bumperCar = new Ride("Bumper car", "Leisure category", emp);
 
+                Visitor v1 = new Visitor("Wang Wu", 25, "13700137000", "VIS002", false);
+                Visitor v2 = new Visitor("Zhang San", 20, "13900139000", "VIS001", true);
+                Visitor v3 = new Visitor("Li Si", 25, "13600136000", "VIS003", true);
+                Visitor v4 = new Visitor("Zhao Liu", 30, "13500135000", "VIS004", false);
+                Visitor v5 = new Visitor("Sun Qi", 22, "13400134000", "VIS005", true);
+
+                bumperCar.addVisitorToHistory(v1);
+                bumperCar.addVisitorToHistory(v2);
+                bumperCar.addVisitorToHistory(v3);
+                bumperCar.addVisitorToHistory(v4);
+                bumperCar.addVisitorToHistory(v5);
+
+                System.out.println("Previous ride history:");
+                bumperCar.printRideHistory();
+
+                bumperCar.sortRideHistory();
+
+                System.out.println("\nSorted passenger history:");
+                bumperCar.printRideHistory();
+            }
         public void partSix() {}
 
         public void partSeven() {}
 
         public void partFive() {}
 }
-
