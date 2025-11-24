@@ -1,6 +1,7 @@
 import java.util.LinkedList;
 import java.util.Iterator;
 import java.util.Queue;
+import java.util.Collections;
 
 public class Ride implements RideInterface {
 
@@ -16,6 +17,14 @@ public class Ride implements RideInterface {
             this.rideName = rideName;
             this.rideType = rideType;
             this.operator = operator;
+        }
+        public void sortRideHistory() {
+          if (rideHistory.isEmpty()) {
+            System.out.println("Error:[" + rideName + "]'s ride history is empty and cannot be sorted!");
+            return;
+        }
+        Collections.sort(rideHistory, new VisitorComparator());
+        System.out.println("[" + rideName + "]'s ride history has been completed (in ascending order of age → alphabetical order of names)!");
         }
 
         public String getRideName() {
@@ -129,7 +138,12 @@ public class Ride implements RideInterface {
 
     @Override
     public void addVisitorToHistory(Visitor visitor) {
-
-    }
+            if (visitor != null) {
+                rideHistory.add(visitor);
+                System.out.println("Tourist [" + visitor.getName() + "] has been successfully added to [" + rideName + "]'s history record！");
+            } else {
+                System.out.println("The visitor object is invalid and cannot be added to the history record!");
+            }
+        }
 }
 
