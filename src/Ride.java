@@ -10,14 +10,36 @@ public class Ride implements RideInterface {
         private Employee operator;
         private Queue<Visitor> waitingQueue = new LinkedList<>();
         private LinkedList<Visitor> rideHistory = new LinkedList<>();
-        public Ride() {
-        }
+        private int maxRider;
+        private int numOfCycles = 0;
 
-        public Ride(String rideName, String rideType, Employee operator) {
-            this.rideName = rideName;
-            this.rideType = rideType;
-            this.operator = operator;
+    public Ride(String rideName, String rideType, Employee operator, int maxRider) {
+        this.rideName = rideName;
+        this.rideType = rideType;
+        this.operator = operator;
+        this.maxRider = maxRider;
+    }
+    public Ride(String rideName, String rideType, Employee operator) {
+        this(rideName, rideType, operator, 10);
+    }
+
+    public int getMaxRider() {
+        return maxRider;
+    }
+
+    public void setMaxRider(int maxRider) {
+        if (maxRider >= 1) {
+            this.maxRider = maxRider;
+        } else {
+            System.out.println("Error: The maximum number per period must be at least 1. It has been set to 1 by default!");
+            this.maxRider = 1;
         }
+    }
+
+    public int getNumOfCycles() {
+        return numOfCycles;
+    }
+
         public void sortRideHistory() {
           if (rideHistory.isEmpty()) {
             System.out.println("Error:[" + rideName + "]'s ride history is empty and cannot be sorted!");
@@ -117,8 +139,27 @@ public class Ride implements RideInterface {
 
     @Override
     public void runOneCycle() {
+            if (this.operator == null) {
+                System.out.println("Error：[" + rideName + "] is not assigned an operator and cannot operate!");
+                return;
+            }
 
-    }
+            if (waitingQueue.isEmpty()) {
+                System.out.println("Error：[" + rideName + "]'s waiting queue is empty, unable to run!");
+                return;
+            }
+
+            System.out.println("\n=== [" + rideName + "] starts running for the " + (numOfCycles + 1) + " cycle（ with a maximum of " + maxRider + " people per cycle）===");
+            int count = 0;
+            while (count < maxRider && !waitingQueue.isEmpty()) {
+                Visitor rider = waitingQueue.poll();
+                rideHistory.add(rider);
+                System.out.println("Visitor [" + rider.getName() + "] has taken [" + rideName + "]");
+                count++;
+            }
+            numOfCycles++;
+            System.out.println("=== The \"+ numOfCycles + \" cycle of [" + rideName + "],with a total of " + count + " people riding===");
+        }
 
     @Override
     public boolean checkVisitorFromHistory(Visitor visitor) {
