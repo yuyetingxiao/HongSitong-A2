@@ -4,6 +4,7 @@ public class AssignmentTwo {
         test.partThree();
         test.partFourA();
         test.partFourB();
+        test.partFive();
     }
 
     public void partThree() {
@@ -77,5 +78,20 @@ public class AssignmentTwo {
 
         public void partSeven() {}
 
-        public void partFive() {}
+        public void partFive() {
+            System.out.println("\n=== Part5 Test facility operating cycle ===");
+            Employee emp = new Employee("Zhang San", 30, "13800138000", "EMP001", "Roller coaster");
+            Ride rollerCoaster = new Ride("Super roller coaster", "Stimulating category", emp, 2);
+            for (int i = 1; i <= 10; i++) {
+                Visitor v = new Visitor("Visitor" + i, 18 + i, "1380000000" + i, "VIS" + (100 + i), i % 2 == 0);
+                rollerCoaster.addVisitorToQueue(v);
+            }
+            System.out.println("Waiting queue before running：");
+            rollerCoaster.printQueue();
+            rollerCoaster.runOneCycle();
+            System.out.println("\nWaiting queue after running:");
+            rollerCoaster.printQueue();
+            System.out.println("\nRiding history after operation:");
+            rollerCoaster.printRideHistory();
+        }
 }
