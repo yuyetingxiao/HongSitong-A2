@@ -2,6 +2,9 @@ import java.util.LinkedList;
 import java.util.Iterator;
 import java.util.Queue;
 import java.util.Collections;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Ride implements RideInterface {
 
@@ -19,6 +22,29 @@ public class Ride implements RideInterface {
         this.operator = operator;
         this.maxRider = maxRider;
     }
+    public void exportRideHistory(String filePath) {
+        if (rideHistory.isEmpty()) {
+            System.out.println("Error:[" + rideName + "]'s ride history is empty, no need to export!");
+            return;
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write("Name, age, phone number, visitor card number, do you have a fast pass");
+            writer.newLine();
+
+            for (Visitor v : rideHistory) {
+                String line = v.getName() + "," +
+                        v.getAge() + "," +
+                        v.getPhone() + "," +
+                        v.getVisitorCardId() + "," +
+                        (v.isHasFastPass() ? "Yes" : "No");
+                writer.write(line);
+                writer.newLine();
+            }
+            System.out.println("Successfully exported [" + rideName + "]'s ride history to a file:" + filePath);
+        } catch (IOException e) {
+            System.out.println("Error: Exporting file failed! Reason:" + e.getMessage());
+        }
+}
     public Ride(String rideName, String rideType, Employee operator) {
         this(rideName, rideType, operator, 10);
     }
@@ -158,7 +184,7 @@ public class Ride implements RideInterface {
                 count++;
             }
             numOfCycles++;
-            System.out.println("=== The \"+ numOfCycles + \" cycle of [" + rideName + "],with a total of " + count + " people riding===");
+            System.out.println("=== The " + numOfCycles + " cycle of [" + rideName + "], with a total of " + count + " people riding ===");
         }
 
     @Override
@@ -187,4 +213,3 @@ public class Ride implements RideInterface {
             }
         }
 }
-
