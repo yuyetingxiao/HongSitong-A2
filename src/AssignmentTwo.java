@@ -1,10 +1,11 @@
-public class AssignmentTwo {
+ublic class AssignmentTwo {
     public static void main(String[] args) {
         AssignmentTwo test = new AssignmentTwo();
         test.partThree();
         test.partFourA();
         test.partFourB();
         test.partFive();
+        test.partSix();
     }
 
     public void partThree() {
@@ -74,7 +75,26 @@ public class AssignmentTwo {
                 System.out.println("\nSorted passenger history:");
                 bumperCar.printRideHistory();
             }
-        public void partSix() {}
+        public void partSix() {
+                System.out.println("\n=== Part6 Export test history to a file ===");
+                Employee emp = new Employee("Zhang San", 30, "13800138000", "EMP001", "Pirate Ship");
+                Ride pirateShip = new Ride("Pirate Ship", "Stimulating category", emp, 3);
+
+                Visitor v1 = new Visitor("A", 20, "139001", "VIS011", true);
+                Visitor v2 = new Visitor("B", 21, "139002", "VIS012", false);
+                Visitor v3 = new Visitor("C", 22, "139003", "VIS013", true);
+                Visitor v4 = new Visitor("D", 23, "139004", "VIS014", false);
+                Visitor v5 = new Visitor("E", 24, "139005", "VIS015", true);
+                pirateShip.addVisitorToHistory(v1);
+                pirateShip.addVisitorToHistory(v2);
+                pirateShip.addVisitorToHistory(v3);
+                pirateShip.addVisitorToHistory(v4);
+                pirateShip.addVisitorToHistory(v5);
+
+                String filePath = "C:\\Users\\yuyetingxiao\\Desktop\\HongSitong-A2\\ride_history.csv";
+                pirateShip.exportRideHistory(filePath);
+
+            }
 
         public void partSeven() {}
 
