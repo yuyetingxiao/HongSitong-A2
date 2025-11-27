@@ -1,4 +1,4 @@
-ublic class AssignmentTwo {
+public class AssignmentTwo {
     public static void main(String[] args) {
         AssignmentTwo test = new AssignmentTwo();
         test.partThree();
@@ -6,6 +6,7 @@ ublic class AssignmentTwo {
         test.partFourB();
         test.partFive();
         test.partSix();
+        test.partSeven();
     }
 
     public void partThree() {
@@ -96,7 +97,19 @@ ublic class AssignmentTwo {
 
             }
 
-        public void partSeven() {}
+        public void partSeven() {
+                System.out.println("\n=== Part7 Test importing history from files ===");
+                Employee emp = new Employee("Zhang San", 30, "13800138000", "EMP001", "Ferris wheel");
+                Ride ferrisWheel = new Ride("Ferris wheel", "Sightseeing category", emp, 4);
+
+                String filePath = "C:\\Users\\yuyetingxiao\\Desktop\\HongSitong-A2\\ride_history.csv";
+                ferrisWheel.importRideHistory(filePath);
+
+                System.out.println("\nNumber of historical records imported:");
+                ferrisWheel.numberOfVisitors();
+                System.out.println("\nDetails of imported history:");
+                ferrisWheel.printRideHistory();
+            }
 
         public void partFive() {
             System.out.println("\n=== Part5 Test facility operating cycle ===");
@@ -115,3 +128,4 @@ ublic class AssignmentTwo {
             rollerCoaster.printRideHistory();
         }
 }
+
